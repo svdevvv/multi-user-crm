@@ -2,6 +2,8 @@ package com.svdev.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +17,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,28 +28,34 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "client")
-public class Client {
+@Table(name = "project")
+public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "client_id")
+    private Client client;
 
-    private String name;
-    private String email;
+    @Column(name = "project_name")
+    private String projectName;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    private String description;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-    @Column(name = "company_name")
-    private String companyName;
+    @Column(name = "expected_payment")
+    private BigDecimal expectedPayment;
+
+    private LocalDate deadline;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "client")
-    private List<Project> projects = new ArrayList<>();
+    @OneToMany(mappedBy = "project")
+    private List<Task> tasks = new ArrayList<>();
+
+    @OneToMany(mappedBy = "project")
+    private List<Payment> payments = new ArrayList<>();
 }

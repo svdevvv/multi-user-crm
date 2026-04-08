@@ -15,6 +15,9 @@
 
         <mapping class="com.svdev.entity.User"/>
         <mapping class="com.svdev.entity.Client"/>
+        <mapping class="com.svdev.entity.Project"/>
+        <mapping class="com.svdev.entity.Task"/>
+        <mapping class="com.svdev.entity.Payment"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
     </session-factory>
