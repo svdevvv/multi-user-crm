@@ -22,13 +22,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "Payment")
-public class Payment {
+public class Payment implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY )
     private Project project;
 
     private BigDecimal amount;

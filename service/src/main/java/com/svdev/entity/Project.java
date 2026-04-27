@@ -29,7 +29,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "project")
-public class Project {
+public class Project implements BaseEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -50,12 +50,12 @@ public class Project {
 
     private LocalDate deadline;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
     @OneToMany(mappedBy = "project")
     private List<Task> tasks = new ArrayList<>();
 
     @OneToMany(mappedBy = "project")
     private List<Payment> payments = new ArrayList<>();
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 }

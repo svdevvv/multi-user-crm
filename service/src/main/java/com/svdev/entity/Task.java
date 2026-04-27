@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @Entity
 @Builder
 @Table(name = "task")
-public class Task {
+public class Task implements BaseEntity<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,4 +47,5 @@ public class Task {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
 }
