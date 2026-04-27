@@ -24,13 +24,14 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@EqualsAndHashCode(of = "email")
-@Table(name = "\"user\"")
-public class User {
+@EqualsAndHashCode(of = "email", callSuper = false)
+@Table(name = "\"user\"")   
+public class User implements BaseEntity<Long> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+     
     private String name;
     private String email;
     private String password;

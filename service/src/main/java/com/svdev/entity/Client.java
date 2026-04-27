@@ -25,7 +25,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "client")
-public class Client {
+public class Client implements BaseEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,9 +43,9 @@ public class Client {
     @Column(name = "company_name")
     private String companyName;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
     @OneToMany(mappedBy = "client")
     private List<Project> projects = new ArrayList<>();
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 }
