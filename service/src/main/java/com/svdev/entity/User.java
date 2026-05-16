@@ -4,6 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -26,7 +29,11 @@ import java.util.List;
 @EqualsAndHashCode(of = "email", callSuper = false)
 @Table(name = "\"user\"")
 @Audited
-public class User extends BaseEntity {
+public class User implements BaseEntity<Long> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
      
     private String name;
     private String email;
